@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MattFor</title>
+    <meta name="description" content="Projects, tools and libraries by MattFor. Personal portfolio.">
+    <link rel="icon" href="https://cdn.relaxy.xyz/relaxy/website/img/people/owner6.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="https://cdn.relaxy.xyz/relaxy/website/img/people/owner6.webp">
+    <style>
+        :root {
+            --bg: #0b0c10;
+            --panel: #111318;
+            --panel-2: #15181f;
+            --line: #22262f;
+            --fg: #e6e8ee;
+            --muted: #9aa2b1;
+            --dim: #6e7681;
+            --accent: #cc056b;
+            --accent-2: #a02074;
+            --blue: #0e75b6;
+            --green: #2ea043;
+            --primary: #ff0685;
+            --accent-blue: #1a718f;
+            --grid-dot: rgba(255, 255, 255, .045);
+            --radius: 10px;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #fbfbfd;
+                --panel: #ffffff;
+                --panel-2: #f4f5f8;
+                --line: #e2e5ec;
+                --fg: #14161c;
+                --muted: #5a6371;
+                --dim: #8b93a1;
+                --grid-dot: rgba(17, 20, 26, .06);
+            }
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg)
+        }
+
+        body {
+            margin: 0;
+            background: transparent;
+            color: var(--fg);
+            font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            height: 100lvh;
+            z-index: -1;
+            pointer-events: none;
+            transform: translateZ(0);
+            background: radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, var(--primary) 12%, transparent), transparent 60%),
+            radial-gradient(90% 50% at 100% 0%, color-mix(in srgb, var(--accent-blue) 16%, transparent), transparent 55%),
+            radial-gradient(var(--grid-dot) 1px, transparent 1.5px);
+            background-size: 100% 100%, 100% 100%, 26px 26px;
+            background-position: 0 0, 0 0, 0 0;
+        }
+
+        .bg-fx {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100vh;
+            height: 100lvh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            contain: paint;
+            -webkit-mask-image: radial-gradient(115% 115% at 50% 50%, transparent 16%, rgba(0, 0, 0, .55) 52%, #000 100%);
+            mask-image: radial-gradient(115% 115% at 50% 50%, transparent 16%, rgba(0, 0, 0, .55) 52%, #000 100%);
+        }
+
+        .bg-fx-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: var(--primary)
+        }
+
+        .bg-fx-svg .b {
+            color: var(--accent-blue)
+        }
+
+        .bg-fx-trace {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            opacity: .2
+        }
+
+        .bg-fx-flow {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            opacity: .55;
+            stroke-dasharray: 6 172;
+            animation: bg-fx-flow 9s linear infinite
+        }
+
+        @keyframes bg-fx-flow {
+            to {
+                stroke-dashoffset: -1000
+            }
+        }
+
+        .bg-fx-node {
+            fill: currentColor;
+            opacity: .28
+        }
+
+        .bg-fx-pad {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            opacity: .32
+        }
+
+        .bg-fx-pulse {
+            animation: bg-fx-pulse 3.2s ease-in-out infinite
+        }
+
+        @keyframes bg-fx-pulse {
+            0%, to {
+                opacity: .12
+            }
+            50% {
+                opacity: .6
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .bg-fx-flow, .bg-fx-pulse {
+                animation: none
+            }
+        }
+
+        a {
+            color: var(--fg);
+            text-decoration: none;
+            border-bottom: 1px solid color-mix(in srgb, var(--accent) 55%, transparent)
+        }
+
+        a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent)
+        }
+
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        header {
+            padding: 72px 0 40px;
+            text-align: center;
+            background: radial-gradient(120% 140% at 50% -20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.4rem, 7vw, 3.6rem);
+            letter-spacing: -.03em;
+            font-weight: 800;
+            background: linear-gradient(100deg, var(--primary) 0%, var(--primary) 30%, var(--accent-blue) 92%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .tag {
+            margin: 14px auto 0;
+            max-width: 640px;
+            color: var(--muted);
+            font-size: 1.02rem
+        }
+
+        .tag strong {
+            color: var(--fg);
+            font-weight: 600
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 24px
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .01em;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            color: var(--muted);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .badge:hover {
+            color: #fff;
+            background: var(--accent);
+            border-color: var(--accent)
+        }
+
+        .badge.b2:hover {
+            background: var(--accent-2);
+            border-color: var(--accent-2)
+        }
+
+        .badge.b3:hover {
+            background: #733b7d;
+            border-color: #733b7d
+        }
+
+        .badge.b4:hover {
+            background: #465686;
+            border-color: #465686
+        }
+
+        .badge svg {
+            width: 13px;
+            height: 13px;
+            flex: 0 0 auto
+        }
+
+        h2 {
+            text-align: center;
+            margin: 64px 0 6px;
+            font-size: .82rem;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        h2 + .rule {
+            height: 1px;
+            background: var(--line);
+            margin-bottom: 26px
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            margin: 0 0 4px;
+            font-size: 1.28rem;
+            letter-spacing: -.01em
+        }
+
+        .card h3 a {
+            border: 0
+        }
+
+        .card p {
+            margin: 6px 0 0;
+            color: var(--muted)
+        }
+
+        .uses {
+            margin-top: 10px;
+            font-size: .86rem;
+            color: var(--dim)
+        }
+
+        .uses b {
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px
+        }
+
+        .stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .stat svg {
+            width: 13px;
+            height: 13px;
+            flex: 0 0 auto
+        }
+
+        .stat.hi {
+            color: var(--green);
+            border-color: color-mix(in srgb, var(--green) 35%, var(--line))
+        }
+
+        .stat.b {
+            color: var(--blue);
+            border-color: color-mix(in srgb, var(--blue) 35%, var(--line))
+        }
+
+        ul.pts {
+            margin: 14px 0 0;
+            padding-left: 0;
+            list-style: none
+        }
+
+        ul.pts li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--muted);
+            margin: 5px 0
+        }
+
+        ul.pts li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: .72em;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: .75
+        }
+
+        details {
+            margin-top: 14px;
+            border-top: 1px solid var(--line);
+            padding-top: 12px
+        }
+
+        details summary {
+            cursor: pointer;
+            list-style: none;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none
+        }
+
+        details summary::before {
+            content: "+";
+            color: var(--accent);
+            font-weight: 700;
+            width: 12px;
+            display: inline-block
+        }
+
+        details[open] summary::before {
+            content: "-"
+        }
+
+        details summary:hover {
+            color: var(--fg)
+        }
+
+        details .body {
+            padding: 12px 0 4px
+        }
+
+        details.block {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--panel);
+            padding: 16px 20px;
+            margin-top: 16px
+        }
+
+        .list {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted)
+        }
+
+        .list li:last-child {
+            border-bottom: 0
+        }
+
+        .list .name {
+            color: var(--fg);
+            font-weight: 650
+        }
+
+        .lang {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .03em;
+            color: var(--dim);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            padding: 1px 6px;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        h4 {
+            margin: 22px 0 2px;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--dim)
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px
+        }
+
+        .contact .item {
+            flex: 1 1 200px;
+            max-width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 9px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            color: var(--fg);
+            transition: border-color .15s ease, transform .15s ease, background .15s ease;
+        }
+
+        a.item:hover {
+            color: var(--fg);
+            background: var(--panel-2);
+            border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+            transform: translateY(-2px)
+        }
+
+        .contact .ico {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--panel-2);
+            border: 1px solid var(--line);
+            color: var(--primary)
+        }
+
+        .contact .ico svg {
+            width: 18px;
+            height: 18px
+        }
+
+        .contact .k {
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--dim)
+        }
+
+        .contact .v {
+            font-weight: 600;
+            overflow-wrap: anywhere
+        }
+
+        footer {
+            margin: 72px 0 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+            color: var(--dim);
+            font-size: .85rem;
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="wrap">
+        <h1>Matt<span>For</span></h1>
+        <p class="tag"><strong>I write things that people use.</strong> C, C++ and Rust are my preferred languages. However, JavaScript and Python are the ones I use most and know best. Currently
+            studying computer science in university. Everything I built, I maintain my free time - I enjoy the process :3.</p>
+        <p class="tag" style="max-width: none;">(BTW: the website is just a fancy rendition of my github README, real one will come soon)</p>
+        <div class="badges">
+            <a class="badge" href="https://github.com/MattFor">
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+                </svg>
+                GitHub</a> <a class="badge b3" href="https://codeberg.org/MattFor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3 4 20.5 12 14l8 6.5L12 3Z"/>
+                <path d="M12 14v7"/>
+            </svg>
+            Codeberg</a> <a class="badge b4" href="https://ko-fi.com/relaxy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8Z"/>
+                <path d="M7 2v3M11 2v3M15 2v3"/>
+            </svg>
+            Ko-fi</a>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <h2>The best projects I've made!</h2>
+    <div class="rule"></div>
+
+    <section class="card">
+        <h3>Relaxy! Ecosystem</h3>
+        <p>Everything <a href="https://relaxy.xyz">relaxy.xyz</a> related: the bot, the dashboard, the website and the supplementary services. A single Raspberry Pi hosts everything isolated under
+            Podman and bubblewrap.</p>
+        <div class="stats">
+            <span class="stat hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+                    d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>210,000+ users</span> <span
+                class="stat b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+                d="M8 4H6a2 2 0 0 0-2 2v3a2 2 0 0 1-2 2 2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h2M16 4h2a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2 2 2 0 0 0-2 2v3a2 2 0 0 1-2 2h-2"/></svg>~250k lines of code</span> <a
+                class="badge" href="https://relaxy.xyz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M3 12h18"/>
+                <path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/>
+            </svg>
+            relaxy.xyz</a> <a class="badge" href="https://dashboard.relaxy.xyz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+            </svg>
+            dashboard</a> <a class="badge" href="https://uptime.relaxy.xyz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12h4l3 8 4-16 3 8h4"/>
+            </svg>
+            uptime</a> <a class="badge" href="https://cdn.relaxy.xyz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="7" rx="2"/>
+                <rect x="3" y="13" width="18" height="7" rx="2"/>
+                <path d="M7 7.5h.01M7 16.5h.01"/>
+            </svg>
+            cdn</a>
+        </div>
+
+        <details>
+            <summary>Relaxy! Discord Bot</summary>
+            <div class="body">
+                <p>A multipurpose Discord bot running as a sharded fleet with one supervising manager process and N cluster processes. Backend uses MongoDB.</p>
+                <p class="uses"><b>Uses:</b> Node.js v24+, discord.js v14, MongoDB (Mongoose), discord-hybrid-sharding, discord-player (custom fork), node-canvas, ffmpeg, tesseract-ocr.</p>
+                <ul class="pts">
+                    <li>210,000+ users</li>
+                    <li>188 commands, 58 event handlers</li>
+                    <li>Diff-based document storage, multi-process DB workers, local caching</li>
+                    <li>OCR-backed and perceptual-hash scam detection on posted images</li>
+                    <li>Cross-server role sync, ban appeals and synced moderation over a credential-less handshake</li>
+                    <li>One shared implementation behind every moderation action, for the usual moderation, dashboard as well as linked servers</li>
+                    <li>Hot reload, rolling restarts and class patching</li>
+                    <li>Shard, network and file watchdogs</li>
+                </ul>
+                <div class="stats"><a class="badge" href="https://github.com/MattFor/relaxy-public-v2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+                    </svg>
+                    public source (half-open)</a></div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Relaxy! Dashboard</summary>
+            <div class="body">
+                <p>Web dashboard for the bot. Discord OAuth login, three access tiers computed from the OAuth guilds permission bitfield. Has per-user profile customization as well.</p>
+                <p class="uses"><b>Uses:</b> Fastify, the native MongoDB driver, JavaScript, esbuild.</p>
+                <ul class="pts">
+                    <li>Discord OAuth-based access control with three permission tiers, per-request authorization checks, per-session CSRF protection and a strict list of modifiable fields</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>Relaxy! Website</summary>
+            <div class="body">
+                <p>The bot's showcase site, plus the public uptime page. I've designed it from the ground up to be as fast as possible.</p>
+                <p class="uses"><b>Uses:</b> HTML, CSS, JavaScript.</p>
+                <ul class="pts">
+                    <li>12 pages, ~5,400 lines of JS, ~5,650 lines of CSS</li>
+                    <li>Changelog, devlog, technical writeup, CDN, Matrix and Minecraft pages</li>
+                    <li>The uptime page is driven by the health feeds published below</li>
+                </ul>
+                <div class="stats"><a class="badge" href="https://github.com/MattFor/relaxy-website">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+                    </svg>
+                    source</a></div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Relaxy! Additions</summary>
+            <div class="body">
+                <p>The scripts and services that ensure maximum possible uptime. Written for runit on Void.</p>
+                <p class="uses"><b>Uses:</b> Node.js, POSIX shell scripts, nftables, runit.</p>
+                <ul class="pts">
+                    <li>Probes 24 services on a ten-second loop and publishes three JSON feeds (one full, one public, one status)</li>
+                    <li>Hardware watchdog that pets <code>/dev/watchdog</code>; makes the Pi reboot automatically on a deadlock</li>
+                    <li>An uptime ledger with day buckets, incident detection and cause inference, mirrored into a Discord outages channel</li>
+                    <li><code>incident</code> CLI tool for declaring and annotating outages</li>
+                    <li>Scripts to keep sshd at the top of the CPU, IO and OOM priority lists, with a self-contained nftables table putting SSH in band 0 at DSCP CS6 to ensure the Pi stays reachable
+                        while it is dying
+                    </li>
+                    <li>Error pages generated from the dashboard's own CSS, so I don't have to write new ones by hand every time I change something</li>
+                </ul>
+                <div class="stats"><a class="badge" href="https://github.com/MattFor/relaxy-additions">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+                    </svg>
+                    source</a></div>
+            </div>
+        </details>
+    </section>
+
+    <section class="card">
+        <h3><a href="https://github.com/MattFor/emoji-mixer">emoji-mixer</a></h3>
+        <p>Node library that generates Google Emoji Kitchen combination image URLs from two emojis.</p>
+        <p class="uses"><b>Uses:</b> JavaScript, webpack (CJS and ESM builds), TypeScript, Python3.</p>
+        <ul class="pts">
+            <li>122,000+ total downloads (<a href="https://npm-stat.com/charts.html?package=emoji-mixer">npm-stat</a>)</li>
+            <li>1,221 dependent repositories on GitHub</li>
+            <li>619 base emojis, 330,640 valid combinations</li>
+            <li>Compact compatibility data is 2.4 MB, down from the 96 MB original</li>
+        </ul>
+        <div class="stats">
+            <a class="badge" href="https://www.npmjs.com/package/emoji-mixer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                    <path d="m3 8 9 5 9-5M12 13v8"/>
+                </svg>
+                npm</a> <a class="badge" href="https://github.com/MattFor/emoji-mixer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+            </svg>
+            source</a>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3><a href="https://github.com/MattFor/logeye">LogEye</a></h3>
+        <p>Runtime introspection logger for Python. Reports variable assignments, mutations and function calls as they happen, with no debugger and no instrumentation of the target code beyond a
+            decorator.</p>
+        <p class="uses"><b>Uses:</b> Python 3.10+, sys.settrace introspection.</p>
+        <ul class="pts">
+            <li>9,000+ PyPI downloads</li>
+            <li>~4,700 lines across 12 modules, with 16 test modules and 16 demos</li>
+            <li>Educational mode rewrites output into plain sentences for teaching</li>
+            <li>Tracks locals, attribute writes, container mutations, arguments and return values</li>
+        </ul>
+        <div class="stats">
+            <a class="badge" href="https://pypi.org/project/logeye/">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/>
+                    <path d="m3 8 9 5 9-5M12 13v8"/>
+                </svg>
+                PyPI</a> <a class="badge" href="https://github.com/MattFor/logeye">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+            </svg>
+            source</a>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3><a href="https://github.com/MattFor/simple-project-tracker">simple-project-tracker</a></h3>
+        <p>CLI project tracker with Git repo discovery, search/filtering, bulk editing, configurable output, and a background update daemon.</p>
+        <p class="uses"><b>Uses:</b> Python 3.11+.</p>
+        <ul class="pts">
+            <li>~10,500 lines across 35 modules, with 17 test modules on top</li>
+            <li>15 commands, each with aliases and a fused short version</li>
+            <li>Frecency-based name resolution</li>
+            <li>Undoable edits, a background daemon, shell completion for bash, zsh and fish, and a <code>man</code> page</li>
+        </ul>
+        <div class="stats">
+            <a class="badge" href="https://github.com/MattFor/simple-project-tracker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+                </svg>
+                source</a> <a class="badge" href="https://github.com/MattFor/simple-project-tracker/actions/workflows/ci.yml">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m8 12 3 3 5-6"/>
+            </svg>
+            CI</a> <a class="badge" href="https://github.com/MattFor/simple-project-tracker/blob/main/LICENSE">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v18M5 7h14M8 21h8"/>
+                <path d="M7 7 4 13h6L7 7ZM17 7l-3 6h6l-3-6Z"/>
+            </svg>
+            MIT</a>
+        </div>
+    </section>
+
+    <h2>My other projects</h2>
+    <div class="rule"></div>
+    <ul class="list">
+        <li><a class="name" href="https://github.com/MattFor/leetcode-zed">leetcode-zed</a><span class="lang">Rust</span><br>A Zed port of vscode-leetcode. Zed extensions are sandboxed WebAssembly
+            with no tree views or webviews (SAD!) so this is a native Rust CLI talking to LeetCode's GraphQL and judge endpoints, wrapped in a <code>wasm32-wasip2</code> extension that runs it as an
+            MCP server for the Agent Panel.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/abba">abba</a><span class="lang">C++26</span><br>Arbitrary Binary Behavioural Anticheat. Memory scanning, file integrity hashing and
+            INI-driven configuration. Still work in progress!
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/von-neumann-machine-simulator">von-neumann-machine-simulator</a><span class="lang">Rust, egui</span><br>Von Neumann architecture simulator
+            with a native GUI.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/ibus-mozc-system">ibus-mozc-system</a><span class="lang">Python, Shell, X11</span><br>Scripts and config that make Japanese input under
+            IBus and Mozc work on a keyboard without dedicated JP keys.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/xfce-tiler">xfce-tiler</a><span class="lang">Python, X11</span><br>Quadrant, half and directional window tiling for XFCE and xfwm4.</li>
+        <li><a class="name" href="https://github.com/MattFor/hprint">hprint</a><span class="lang">C++26</span><br>Header-only utility for centered terminal headers with compile-time border characters
+            and terminal width detection.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/path-variable-editor">path-variable-editor</a><span class="lang">Python</span><br>Windows PATH editor that works past the 2047 character
+            limit.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/download-favourite-discord-gifs">download-favourite-discord-gifs</a><span class="lang">Python</span><br>Downloads exported Discord
+            favourite GIFs, converts to correct formats with magic byte detection.
+        </li>
+        <li><a class="name" href="https://github.com/MattFor/raytracer">raytracer</a><span class="lang">C++</span><br>Ray tracer following Ray Tracing in One Weekend.</li>
+        <li><a class="name" href="https://github.com/MattFor/libstrangle-dlsym-fix">libstrangle-dlsym-fix</a><span class="lang">C</span><br>Fork of milaq's libstrangle with the
+            <code>__libc_dlsym</code> lookup error corrected, making OpenGL work again on latest glibc.
+        </li>
+    </ul>
+
+    <details class="block">
+        <summary>Personal - random configs and themes that I use</summary>
+        <div class="body">
+            <ul class="list">
+                <li><a class="name" href="https://github.com/MattFor/g-mang-hud-mattfor-edition">g-mang-hud-mattfor-edition</a><span class="lang">TF2 HUD</span><br>My modification of a 16+ year old
+                    TF2 HUD written in ReScript.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/.bashrc">.bashrc</a><span class="lang">Shell</span><br>My .bashrc. System, packaging, media and programming utilities, each
+                    documented with what it needs installed.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/gtk-config">gtk-config</a><span class="lang">CSS</span><br>My GTK 3 and 4 theme for Void.</li>
+                <li><a class="name" href="https://github.com/MattFor/xfce4-notes-plugin">xfce4-notes-plugin</a><span class="lang">Vala</span><br>Mirror with the <code>.git</code> folder detection
+                    removed, along with the folder name in the title.
+                </li>
+            </ul>
+        </div>
+    </details>
+
+    <details class="block">
+        <summary>Archive - university work and older projects</summary>
+        <div class="body">
+            <h4>University</h4>
+            <ul class="list">
+                <li><a class="name" href="https://github.com/MattFor/neural-network">neural-network</a><span class="lang">C++26</span><br>Feedforward multithreaded neural network written from scratch,
+                    with a test suite. Also submitted as the final project for algorithms &amp; data structures.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/visual-sorter-v2">visual-sorter-v2</a><span class="lang">C++20, OpenGL, SDL3, ImGui</span><br>Twelve sorting algorithms drawn one
+                    comparison at a time. Performance metrics, graphs and more.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/emergency-department">emergency-department</a><span class="lang">C++20, POSIX IPC</span><br>A hospital emergency department where
+                    every role is a separate process, coordinating purely through message queues, shared memory, semaphores and signals. Final project for operating systems class.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/numerical-methods-lab-programs">numerical-methods-lab-programs</a><span class="lang">C++</span><br>Numerical methods lab programs.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/dotnet-university">dotnet-university</a><span class="lang">C#</span><br>Every exercise from the .NET class.</li>
+            </ul>
+            <h4>Older projects</h4>
+            <ul class="list">
+                <li><a class="name" href="https://github.com/MattFor/relaxy-public-v1">relaxy-public-v1</a><span class="lang">JavaScript</span><br>The first stripped-down showcase of the bot, from
+                    2023. Superseded by <a href="https://github.com/MattFor/relaxy-public-v2">relaxy-public-v2</a>.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/grand-archives-discord-bot">grand-archives-discord-bot</a><span class="lang">JavaScript</span><br>A bot for an old roleplay server.
+                    Its <code>alchemy</code> command is what <a href="https://github.com/MattFor/emoji-mixer">emoji-mixer</a> grew out of.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/escape-the-backrooms-teammaker">escape-the-backrooms-teammaker</a><span class="lang">C++, Win32</span><br>Team builder used by
+                    nightmare runners early in the game's life.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/matura-exam-preparation">matura-exam-preparation</a><span class="lang">Python</span><br>Scripts and notes I used as study material
+                    for the Matura CS exam.
+                </li>
+                <li><a class="name" href="https://github.com/MattFor/asteroids-old">asteroids-old</a><span class="lang">C++, SFML</span>, <a class="name"
+                                                                                                                                             href="https://github.com/MattFor/c-sorting-visualiser">c-sorting-visualiser</a><span
+                        class="lang">C</span> and <a class="name" href="https://github.com/MattFor/backprop-neural-network-side-project">backprop-neural-network-side-project</a><span class="lang">Python</span><br>Early
+                    things from when I was first learning to program.
+                </li>
+            </ul>
+        </div>
+    </details>
+
+    <h2>Stuff from communities I manage</h2>
+    <div class="rule"></div>
+    <section class="card">
+        <p>I'm a community manager for <a href="https://store.steampowered.com/publisher/fancy">Fancy Games</a>, overseeing <a href="https://store.steampowered.com/app/1943950/Escape_the_Backrooms/">Escape
+            the Backrooms</a>. Join our <a href="https://discord.gg/fancygames">Discord server</a>! I also own and run the Escape the Backrooms Community organization <a
+                href="https://github.com/EscapeTheBackroomsCommunity">GitHub</a> | <a href="https://codeberg.org/EscapeTheBackrooms">Codeberg</a>.</p>
+        <details>
+            <summary>Organisation repositories</summary>
+            <div class="body">
+                <ul class="list">
+                    <li><a class="name" href="https://github.com/EscapeTheBackroomsCommunity/autosplitter">autosplitter</a><span class="lang">ASL</span><br>The LiveSplit autosplitter for the game,
+                        covering versions 5.0+. Auto start, splits on level transitions and cutscenes, load removal, and a paused timer in cutscenes, the main menu and on crashes. Based on <a
+                                href="https://github.com/ru-mii/uhara">uhara</a> by ru-mii.
+                    </li>
+                    <li><a class="name" href="https://github.com/EscapeTheBackroomsCommunity/UE4SS">UE4SS</a><span class="lang">C++</span><br>Our fork of <a
+                            href="https://github.com/UE4SS-RE/RE-UE4SS">RE-UE4SS</a>.
+                    </li>
+                    <li><a class="name" href="https://github.com/EscapeTheBackroomsCommunity/community-wiki">community-wiki</a><br>The community wiki: confirmed features, suggestion guidelines,
+                        templates for level, item and entity suggestions, and a guide to running the game on Linux.
+                    </li>
+                    <li><a class="name" href="https://github.com/MattFor/etb-speedrun-bot-v2">etb-speedrun-bot-v2</a><span class="lang">Python</span><br>The speedrunning bot behind the leaderboards
+                        and run verification, "The Watcher", originally by <a href="https://github.com/Reokin">@Reokin</a>. Members link their speedrun.com profile and the bot keeps their roles up to
+                        date.
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </section>
+
+    <h2>Get in contact</h2>
+    <div class="rule"></div>
+    <p class="tag" style="margin-bottom:22px">The fastest way to reach me is Discord or email. I read everything, and I'm happy to talk about collaborations, bug reports and contributions.</p>
+    <div class="contact">
+        <div class="item">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path
+                    d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127c-.598.35-1.22.645-1.873.891a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028ZM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg></span>
+            <span class="k">Discord</span> <span class="v">mattfor</span>
+        </div>
+        <a class="item" href="mailto:mattfor@relaxy.xyz"> <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                                                 aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2.5 7.5 9.5 6 9.5-6"/></svg></span> <span
+                class="k">Email</span> <span class="v">mattfor@relaxy.xyz</span> </a> <a class="item" href="https://github.com/MattFor"> <span class="ico"><svg viewBox="0 0 16 16" fill="currentColor"
+                                                                                                                                                                aria-hidden="true"><path
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg></span>
+        <span class="k">GitHub</span> <span class="v">MattFor</span> </a> <a class="item" href="https://codeberg.org/MattFor"> <span class="ico"><svg viewBox="0 0 24 24" fill="none"
+                                                                                                                                                      stroke="currentColor" stroke-width="2"
+                                                                                                                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                                                                                                                      aria-hidden="true"><path
+            d="M12 3 4 20.5 12 14l8 6.5L12 3Z"/><path d="M12 14v7"/></svg></span> <span class="k">Codeberg</span> <span class="v">MattFor</span> </a>
+    </div>
+
+    <footer>This website is a placeholder for now! Please don't look too much into it lol</footer>
+</main>
+<script>
+    (function ()
+    {
+        'use strict';
+
+        var GRID = 20, H_TOLERANCE = 200;
+        var lastW = 0, lastH = 0;
+
+        var mq = function (q) { return !!(window.matchMedia && window.matchMedia(q).matches); };
+        var reducedMotion = function () { return mq('(prefers-reduced-motion: reduce)'); };
+        var lowPower = function () { return mq('(pointer: coarse)') || mq('(max-width: 700px)'); };
+
+        var clamp = function (v, lo, hi) { return Math.min(hi, Math.max(lo, v)); };
+        var snap = function (v) { return Math.round(v / GRID) * GRID; };
+        var rand = function (lo, hi) { return lo + Math.random() * (hi - lo); };
+        var randInt = function (lo, hi) { return Math.floor(rand(lo, hi + 1)); };
+        var chance = function (p) { return Math.random() < p; };
+
+        function build()
+        {
+            var layer = document.querySelector('.bg-fx');
+            var fresh = !layer;
+
+            if (fresh)
+            {
+                layer = document.createElement('div');
+                layer.className = 'bg-fx';
+                layer.setAttribute('aria-hidden', 'true');
+                document.body.prepend(layer);
+            }
+
+            var box = layer.getBoundingClientRect();
+            var w = Math.max(320, Math.round(box.width) || window.innerWidth);
+            var h = Math.max(320, Math.round(box.height) || window.innerHeight);
+
+            if (!fresh && w === lastW && Math.abs(h - lastH) <= H_TOLERANCE)
+            {
+                return;
+            }
+
+            lastW = w;
+            lastH = h;
+
+            var cx = w / 2, cy = h / 2;
+            var edgeness = function (x, y) { return Math.max(Math.abs(x - cx) / cx, Math.abs(y - cy) / cy); };
+
+            // Traces start anywhere, but retry a few times so they favour the edges.
+            var edgePoint = function ()
+            {
+                var x = clamp(snap(rand(0, w)), 0, w), y = clamp(snap(rand(0, h)), 0, h);
+                for (var i = 0; i < 5 && !(Math.random() <= edgeness(x, y)); i++)
+                {
+                    x = clamp(snap(rand(0, w)), 0, w);
+                    y = clamp(snap(rand(0, h)), 0, h);
+                }
+                return [
+                    x,
+                    y
+                ];
+            };
+
+            var inset = Math.min(120, Math.round(Math.min(w, h) * .12));
+            var minX = inset, maxX = w - inset, minY = inset, maxY = h - inset;
+            var innerPoint = function ()
+            {
+                return [
+                    clamp(snap(rand(minX, maxX)), minX, maxX),
+                    clamp(snap(rand(minY, maxY)), minY, maxY)
+                ];
+            };
+            var bounce = function (pos, step, lo, hi)
+            {
+                var next = pos + step;
+                return clamp(snap(next < lo || next > hi
+                    ? pos - step
+                    : next), lo, hi);
+            };
+
+            var parts = [], ends = [], flows = [];
+
+            function addPath(isFlow)
+            {
+                var pt = isFlow
+                    ? innerPoint()
+                    : edgePoint();
+                var x = pt[0], y = pt[1];
+                var d = 'M' + x + ' ' + y;
+                var segments = isFlow
+                    ? randInt(4, 7)
+                    : randInt(2, 4);
+                var horizontal = chance(.5);
+                var length = 0;
+
+                for (var i = 0; i < segments; i++)
+                {
+                    var span = horizontal
+                        ? maxX - minX
+                        : maxY - minY;
+                    var step = snap(isFlow
+                        ? Math.min(rand(160, 440), span)
+                        : rand(80, 300)) * (chance(.5)
+                        ? 1
+                        : -1);
+
+                    if (horizontal)
+                    {
+                        var nx = isFlow
+                            ? bounce(x, step, minX, maxX)
+                            : clamp(x + step, 0, w);
+                        length += Math.abs(nx - x);
+                        x = nx;
+                        d += ' H' + x;
+                    }
+                    else
+                    {
+                        var ny = isFlow
+                            ? bounce(y, step, minY, maxY)
+                            : clamp(y + step, 0, h);
+                        length += Math.abs(ny - y);
+                        y = ny;
+                        d += ' V' + y;
+                    }
+
+                    horizontal = !horizontal;
+                }
+
+                var blue = chance(.35)
+                    ? ' b'
+                    : '';
+                ends.push([
+                    x,
+                    y,
+                    blue
+                ]);
+
+                if (isFlow)
+                {
+                    var dur = (7 + Math.random() * 9).toFixed(1);
+                    var delay = (-Math.random() * 12).toFixed(1);
+                    parts.push('<path class="bg-fx-flow' + blue + '" style="animation-duration:' + dur + 's;animation-delay:' + delay + 's" d="' + d + '"/>');
+                    flows.push([
+                        d,
+                        blue,
+                        length
+                    ]);
+                }
+                else
+                {
+                    parts.push('<path class="bg-fx-trace' + blue + '" d="' + d + '"/>');
+                }
+            }
+
+            var weak = lowPower();
+            var traceDensity = weak
+                ? {
+                    per: 90000,
+                    min: 8,
+                    max: 34
+                }
+                : {
+                    per: 34000,
+                    min: 14,
+                    max: 110
+                };
+            var flowDensity = weak
+                ? {
+                    per: 420000,
+                    min: 2,
+                    max: 6
+                }
+                : {
+                    per: 200000,
+                    min: 3,
+                    max: 20
+                };
+            var padDensity = weak
+                ? {
+                    per: 200000,
+                    min: 2,
+                    max: 5
+                }
+                : {
+                    per: 200000,
+                    min: 4,
+                    max: 18
+                };
+
+            var area = w * h;
+            var traceCount = clamp(Math.round(area / traceDensity.per), traceDensity.min, traceDensity.max);
+            var flowCount = clamp(Math.round(area / flowDensity.per), flowDensity.min, flowDensity.max);
+            var i, j;
+
+            for (i = 0; i < traceCount; i++)
+            {
+                addPath(false);
+            }
+            for (i = 0; i < flowCount; i++)
+            {
+                addPath(true);
+            }
+
+            ends.forEach(function (e)
+            {
+                parts.push('<circle class="bg-fx-node' + e[2] + '" cx="' + e[0] + '" cy="' + e[1] + '" r="3"/>');
+            });
+
+            var padCount = clamp(Math.round(area / padDensity.per), padDensity.min, padDensity.max);
+
+            for (i = 0; i < padCount; i++)
+            {
+                var node = ends[randInt(0, ends.length - 1)];
+                if (!node)
+                {
+                    break;
+                }
+                var padDur = (2.6 + Math.random() * 2.6).toFixed(1);
+                var padDelay = (-Math.random() * 3).toFixed(1);
+                parts.push('<circle class="bg-fx-pad bg-fx-pulse' + node[2] + '" style="animation-duration:' + padDur + 's;animation-delay:' + padDelay + 's" cx="' + node[0] + '" cy="' + node[1] + '" r="6"/>');
+            }
+
+            // Comet trails riding along a few of the flow paths.
+            if (!reducedMotion() && !weak && flows.length)
+            {
+                var riders = clamp(Math.round(flowCount * .35), 1, 3);
+                var headR = 3.4, tailR = 2.4, spacing = 3.4, maxTrail = 230;
+
+                for (i = 0; i < riders; i++)
+                {
+                    var flow = flows[randInt(0, flows.length - 1)];
+                    var len = flow[2];
+                    if (len < 80)
+                    {
+                        continue;
+                    }
+
+                    var dur = (6 + Math.random() * 6).toFixed(1);
+                    var begin = -Math.random() * parseFloat(dur);
+                    var trail = Math.min(maxTrail, len * .75);
+                    var dots = clamp(Math.round(trail / spacing), 8, 70);
+                    var gap = spacing / len * parseFloat(dur);
+                    var g = '<g class="bg-fx-rider' + flow[1] + '">';
+
+                    for (j = dots - 1; j >= 0; j--)
+                    {
+                        var r = (headR - (headR - tailR) * (j / (dots - 1))).toFixed(2);
+                        var opacity = (.85 * Math.pow(1 - j / dots, 1.15)).toFixed(3);
+                        var start = (begin + j * gap).toFixed(3);
+                        g += '<circle r="' + r + '" fill="currentColor" opacity="' + opacity + '"><animateMotion dur="' + dur + 's" begin="' + start + 's" repeatCount="indefinite" rotate="0" path="' + flow[0] + '"/></circle>';
+                    }
+
+                    parts.push(g + '</g>');
+                }
+            }
+
+            layer.innerHTML = '<svg class="bg-fx-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' + parts.join(
+                '') + '</svg>';
+        }
+
+        if (document.readyState === 'loading')
+        {
+            document.addEventListener('DOMContentLoaded', build);
+        }
+        else
+        {
+            build();
+        }
+
+        var timer, lastWindowW = window.innerWidth;
+
+        window.addEventListener("resize", function ()
+        {
+            if (window.innerWidth === lastWindowW)
+            {
+                return;
+            }
+            lastWindowW = window.innerWidth;
+            clearTimeout(timer);
+            timer = setTimeout(build, 250);
+        });
+    })();
+</script>
+</body>
+</html>
