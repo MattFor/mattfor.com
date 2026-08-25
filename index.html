@@ -522,6 +522,19 @@
             font-size: .85rem;
             text-align: center
         }
+
+        @media (max-width: 700px) {
+            .contact {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .contact .item {
+                max-width: none;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -560,7 +573,7 @@
 
     <section class="card">
         <h3>Relaxy! Ecosystem</h3>
-        <p>Everything <a href="https://relaxy.xyz">relaxy.xyz</a> related: the bot, the dashboard, the website and the supplementary services. A single Raspberry Pi hosts everything isolated under
+        <p>Everything <a href="https://relaxy.xyz">relaxy.xyz</a> related: the bot, the dashboard, the website and the supplementary services.</p><p>A single Raspberry Pi hosts everything isolated under
             Podman and bubblewrap.</p>
         <div class="stats">
             <span class="stat hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
@@ -693,7 +706,7 @@
 
     <section class="card">
         <h3><a href="https://github.com/MattFor/logeye">LogEye</a></h3>
-        <p>Runtime introspection logger for Python. Reports variable assignments, mutations and function calls as they happen, with no debugger and no instrumentation of the target code beyond a
+        <p>Runtime introspection logger for Python.</p> <p>Reports variable assignments, mutations and function calls as they happen, with no debugger and no instrumentation of the target code beyond a
             decorator.</p>
         <p class="uses"><b>Uses:</b> Python 3.10+, sys.settrace introspection.</p>
         <ul class="pts">
@@ -827,9 +840,9 @@
                 <li><a class="name" href="https://github.com/MattFor/matura-exam-preparation">matura-exam-preparation</a><span class="lang">Python</span><br>Scripts and notes I used as study material
                     for the Matura CS exam.
                 </li>
-                <li><a class="name" href="https://github.com/MattFor/asteroids-old">asteroids-old</a><span class="lang">C++, SFML</span>, <a class="name"
+                <li><a class="name" href="https://github.com/MattFor/asteroids-old">asteroids-old</a><span class="lang">C++, SFML</span><a class="name"
                                                                                                                                              href="https://github.com/MattFor/c-sorting-visualiser">c-sorting-visualiser</a><span
-                        class="lang">C</span> and <a class="name" href="https://github.com/MattFor/backprop-neural-network-side-project">backprop-neural-network-side-project</a><span class="lang">Python</span><br>Early
+                        class="lang">C</span><a class="name" href="https://github.com/MattFor/backprop-neural-network-side-project">backprop-neural-network-side-project</a><span class="lang">Python</span><br>Early
                     things from when I was first learning to program.
                 </li>
             </ul>
@@ -840,7 +853,7 @@
     <div class="rule"></div>
     <section class="card">
         <p>I'm a community manager for <a href="https://store.steampowered.com/publisher/fancy">Fancy Games</a>, overseeing <a href="https://store.steampowered.com/app/1943950/Escape_the_Backrooms/">Escape
-            the Backrooms</a>. Join our <a href="https://discord.gg/fancygames">Discord server</a>! I also own and run the Escape the Backrooms Community organization <a
+            the Backrooms</a>. [<a href="https://discord.gg/fancygames">Discord server</a>]</p><p>I also own and run the Escape the Backrooms Community organization <a
                 href="https://github.com/EscapeTheBackroomsCommunity">GitHub</a> | <a href="https://codeberg.org/EscapeTheBackrooms">Codeberg</a>.</p>
         <details>
             <summary>Organisation repositories</summary>
@@ -867,8 +880,8 @@
 
     <h2>Get in contact</h2>
     <div class="rule"></div>
-    <p class="tag" style="margin-bottom:22px">The fastest way to reach me is Discord or email. I read everything, and I'm happy to talk about collaborations, bug reports and contributions.</p>
-    <div class="contact">
+    <p class="tag" style="text-align: center; margin: 0 auto 4px;">The fastest way to reach me is Discord or email.</p>
+    <p class="tag" style="text-align: center; margin: 0 auto; max-width: none; white-space: nowrap;">I read everything, and I'm happy to talk about collaborations, bug reports and contributions.</p>    <div class="contact">
         <button class="item" type="button" onclick="copyDiscord(this)">
         <span class="ico">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
